@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using BoardGameTrackerV2.Models;
 
@@ -13,7 +10,14 @@ namespace BoardGameTrackerV2.Data
             : base(options)
         {
         }
-        public DbSet<BoardGameTrackerV2.Models.Game> Game { get; set; }
-        public DbSet<BoardGameTrackerV2.Models.Player> Player { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.Entity<Player>().HasData(new Player { Id = -1, Name = "Unknown" });
+            base.OnModelCreating(builder);
+        }
+
+        public DbSet<Game> Game { get; set; }
+        public DbSet<Player> Player { get; set; }
     }
 }
