@@ -14,5 +14,6 @@ namespace BoardGameTrackerV2.Data
         {
         }
         public DbSet<BoardGameTrackerV2.Models.Game> Game { get; set; }
+        public DbSet<BoardGameTrackerV2.Models.Player> Player { get; set; }
     }
 }
